@@ -28,3 +28,5 @@ pre-commit install
 ----
 make docker-infra-up
 ----
+* Access the Elastic Search instance at http://localhost:9200
+* Access the Kibana instance at http://localhost:5601
