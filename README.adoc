@@ -1,0 +1,30 @@
+= IoT Monitoring Demo
+:toc:
+
+== Introduction
+
+=== What's this?
+
+A demo project showing how to use Elastic Search and Kibana to monitor IoT data based on a simple use case.
+
+=== Prerequisites
+
+* Docker Desktop, Podman Desktop, or any other compatible container runtime
+* Docker compose support
+* Make
+* Optional: direnv
+* pre-commit
+
+== Get started
+
+* Clone this repository
+* Install pre-commit hooks:
+[source,bash]
+----
+pre-commit install
+----
+* Run below command to start the stack:
+[source,bash]
+----
+make docker-infra-up
+----
