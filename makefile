@@ -33,3 +33,11 @@ pre-commit-uninstall:
 .PHONY: pre-commit-run
 pre-commit-run:
 		pre-commit run --all-files
+
+.PHONY: elastic-index-template
+elastic-index-template:
+		./scripts/setup-index-template.sh
+
+.PHONY: kibana-data-view
+kibana-data-view:
+		./scripts/setup-kibana-data-view.sh

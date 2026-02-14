@@ -30,3 +30,18 @@ make docker-infra-up
 ----
 * Access the Elastic Search instance at http://localhost:9200
 * Access the Kibana instance at http://localhost:5601
+* Create a simple index template:
+[source,bash]
+----
+make setup-index-template
+----
+* Ingest some data using the provided python script:
+[source,bash]
+----
+python3 scripts/generate_test_messages.py --count 300 --ingest
+----
+* Create a data view for the index in Kibana:
+[source,bash]
+----
+make kibana-data-view
+----

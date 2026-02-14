@@ -1,16 +1,23 @@
+---
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+      - id: check-case-conflict
       - id: check-merge-conflict
       - id: end-of-file-fixer
+      - id: check-executables-have-shebangs
       - id: trailing-whitespace
       - id: check-yaml
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.38.0
     hooks:
       - id: yamllint
-        args:
-          - -d
-          - '{extends: default, rules: {line-length: {max: 100}}}'
-        files: ^(docker-compose\.yaml|config/.*\.ya?ml)$
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
