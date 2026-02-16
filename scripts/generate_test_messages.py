@@ -11,6 +11,13 @@ from urllib import request
 
 
 STATUSES = ["OK", "Warning", "Error"]
+DEVICE_IDS = [
+    "device-001",
+    "device-002",
+    "device-003",
+    "device-004",
+    "device-005",
+]
 
 
 def random_location(lat: float, lon: float, jitter: float) -> dict:
@@ -46,8 +53,6 @@ def parse_args() -> argparse.Namespace:
         description="Generate JSON lines for IoT event ingestion."
     )
     parser.add_argument("--count", type=int, default=10)
-    parser.add_argument("--device-prefix", default="device-")
-    parser.add_argument("--device-count", type=int, default=3)
     parser.add_argument("--base-lat", type=float, default=47.3769)
     parser.add_argument("--base-lon", type=float, default=8.5417)
     parser.add_argument("--jitter", type=float, default=0.02)
@@ -89,7 +94,7 @@ def main() -> None:
     events = []
 
     for i in range(args.count):
-        device_id = f"{args.device_prefix}{(i % args.device_count) + 1}"
+        device_id = DEVICE_IDS[i % len(DEVICE_IDS)]
         ts = start + timedelta(seconds=i * (args.minutes * 60 / max(args.count, 1)))
         event = generate_event(device_id, ts, args.base_lat, args.base_lon, args.jitter)
         events.append(event)
